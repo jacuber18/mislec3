@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milliseconds Countdown</title>
+
+<style>
+body {
+    margin: 0;
+    background: #000;
+    color: #00ff66;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Consolas, Monaco, monospace;
+}
+
+#counter {
+    font-size: clamp(2rem, 7vw, 6rem);
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body>
+
+<div id="counter">Loading...</div>
+
+<script>
+const target = new Date(2026, 7, 26, 7, 0, 0, 0); // August 26, 2026, 7:00 AM
+const counter = document.getElementById("counter");
+
+function update() {
+    const remaining = target.getTime() - Date.now();
+
+    if (remaining <= 0) {
+        counter.textContent = "0";
+        clearInterval(timer);
+        return;
+    }
+
+    counter.textContent = remaining.toLocaleString();
+}
+
+// Update as often as the browser allows.
+const timer = setInterval(update, 1);
+update();
+</script>
+
+</body>
+</html>
